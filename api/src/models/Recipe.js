@@ -5,34 +5,22 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('recipe', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    ingredients: {
-      type: DataTypes.JSON,
-      allowNull: false,
-    },
-    instructions: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    imageUrl: {
+    image: {
       type: DataTypes.STRING,
       allowNull: true,
     },
     summary: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true, //no esta disponible para todas las recetas
     },
     healthScore:{
       type: DataTypes.INTEGER,
@@ -46,10 +34,10 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    mine: { // no me viene de la bd. Es para crear las recetas
+    createdInDb: { // no me viene de la bd. Es para crear las recetas
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: false,
+      defaultValue: true,
     },
 
   });
